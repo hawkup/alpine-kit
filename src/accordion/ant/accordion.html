@@ -1,63 +1,41 @@
-<div x-id="['accordion-header', 'accordion-content']" x-data="{ open: false, disabled: false }">
-  <button
-    @click="open = !open"
-    type="button"
-    :id="$id('accordion-header')"
-    :aria-expanded="open"
-    :aria-controls="$id('accordion-content')"
-    :aria-disabled="disabled"
-  >
-    This is panel header 1
-  </button>
-  <template x-if="open">
+<div
+  x-data="{ items: [
+    { id: 1, header: 'This is panel header 1', content: 'This is panel content 1', open: false, disabled: false },
+    { id: 2, header: 'This is panel header 2', content: 'This is panel content 2', open: false, disabled: false },
+    { id: 3, header: 'This is panel header 3', content: 'This is panel content 3', open: false, disabled: false }
+  ]}"
+  class="rounded-sm border-x border-t border-neutral-5 text-sm"
+>
+  <template x-for="item in items" :key="item.id">
     <div
-      role="region"
-      :id="$id('accordion-content')"
-      :aria-labelledby="$id('accordion-header')"
+      x-id="['accordion-header', 'accordion-content']"
     >
-      This is panel content 1
-    </div>
-  </template>
-</div>
-<div x-id="['accordion-header', 'accordion-content']" x-data="{ open: false, disabled: false }">
-  <button
-    @click="open = !open"
-    type="button"
-    :id="$id('accordion-header')"
-    :aria-expanded="open"
-    :aria-controls="$id('accordion-content')"
-    :aria-disabled="disabled"
-  >
-    This is panel header 2
-  </button>
-  <template x-if="open">
-    <div
-      role="region"
-      :id="$id('accordion-content')"
-      :aria-labelledby="$id('accordion-header')"
-    >
-      This is panel content 2
-    </div>
-  </template>
-</div>
-<div x-id="['accordion-header', 'accordion-content']" x-data="{ open: false, disabled: false }">
-  <button
-    @click="open = !open"
-    type="button"
-    :id="$id('accordion-header')"
-    :aria-expanded="open"
-    :aria-controls="$id('accordion-content')"
-    :aria-disabled="disabled"
-  >
-    This is panel header 3
-  </button>
-  <template x-if="open">
-    <div
-      role="region"
-      :id="$id('accordion-content')"
-      :aria-labelledby="$id('accordion-header')"
-    >
-      This is panel content 3
+      <h3>
+        <button
+          @click="item.open = !item.open"
+          type="button"
+          :id="$id('accordion-header')"
+          :disabled="item.disabled"
+          :aria-expanded="item.open"
+          :aria-controls="$id('accordion-content')"
+          :aria-disabled="item.disabled"
+          class="flex items-center bg-neutral-2 px-4 h-[46px] w-full border-b border-neutral-5 [&[aria-expanded='true']>svg]:rotate-90"
+        >
+          <svg class="mr-3" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+            <path fill="#000" d="M9.398 5.663 3.36.947a.107.107 0 0 0-.172.085v1.035c0 .065.03.128.081.169L8.091 6 3.269 9.765a.213.213 0 0 0-.082.169v1.035c0 .09.104.14.173.084l6.038-4.715a.428.428 0 0 0 0-.675Z"/>
+          </svg>
+          <span x-html="item.header"></span>
+        </button>
+      </h3>
+      <div
+        role="region"
+        :id="$id('accordion-content')"
+        x-show="item.open"
+        x-html="item.content"
+        :aria-labelledby="$id('accordion-header')"
+        class="p-4 border-b border-neutral-5"
+      >
+      </div>
     </div>
   </template>
 </div>
