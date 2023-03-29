@@ -1,0 +1,63 @@
+<div x-id="['accordion-header', 'accordion-content']" x-data="{ open: false, disabled: false }">
+  <button
+    @click="open = !open"
+    type="button"
+    :id="$id('accordion-header')"
+    :aria-expanded="open"
+    :aria-controls="$id('accordion-content')"
+    :aria-disabled="disabled"
+  >
+    This is panel header 1
+  </button>
+  <template x-if="open">
+    <div
+      role="region"
+      :id="$id('accordion-content')"
+      :aria-labelledby="$id('accordion-header')"
+    >
+      This is panel content 1
+    </div>
+  </template>
+</div>
+<div x-id="['accordion-header', 'accordion-content']" x-data="{ open: false, disabled: false }">
+  <button
+    @click="open = !open"
+    type="button"
+    :id="$id('accordion-header')"
+    :aria-expanded="open"
+    :aria-controls="$id('accordion-content')"
+    :aria-disabled="disabled"
+  >
+    This is panel header 2
+  </button>
+  <template x-if="open">
+    <div
+      role="region"
+      :id="$id('accordion-content')"
+      :aria-labelledby="$id('accordion-header')"
+    >
+      This is panel content 2
+    </div>
+  </template>
+</div>
+<div x-id="['accordion-header', 'accordion-content']" x-data="{ open: false, disabled: false }">
+  <button
+    @click="open = !open"
+    type="button"
+    :id="$id('accordion-header')"
+    :aria-expanded="open"
+    :aria-controls="$id('accordion-content')"
+    :aria-disabled="disabled"
+  >
+    This is panel header 3
+  </button>
+  <template x-if="open">
+    <div
+      role="region"
+      :id="$id('accordion-content')"
+      :aria-labelledby="$id('accordion-header')"
+    >
+      This is panel content 3
+    </div>
+  </template>
+</div>
