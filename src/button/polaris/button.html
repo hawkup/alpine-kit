@@ -1,14 +1,52 @@
-<div
-  x-data="{
-    text: 'Hello World',
-    onClick() {
-      alert('Hello World');
-    }
-  }"
->
+<div x-data="button">
   <button
+    type="button"
     @click="onClick"
+    :class="buttonClass"
     x-html="text"
   >
   </button>
 </div>
+
+<script>
+  const intentClass = (intent) => {
+    switch (intent) {
+      case 'primary':
+        return 'bg-[#008060] text-white';
+        break;
+      case 'destructive':
+        return 'bg-[#d82c0d] text-white border-transparent';
+        break;
+      case 'basic':
+      default:
+        return 'bg-white text-[#202223] border border-solid border-[#babfc3] shadow-[0_1px_0_rgba(0,0,0,0.05)]';
+        break;
+    }
+  }
+
+  const sizeClass = (size) => {
+    switch (size) {
+      case 'large':
+        return 'text-md leading-5 py-3 px-6';
+        break;
+      case 'slim':
+        return 'text-sm leading-5 py-1 px-3';
+        break;
+      case 'medium':
+      default:
+        return 'text-sm leading-5 py-2 px-4';
+        break;
+    }
+  }
+
+  Alpine.data('button', () => ({
+    intent: window.buttonArgs.intent,
+    size: window.buttonArgs.size,
+    text: window.buttonArgs.text,
+    onClick: window.buttonArgs.onClick,
+    buttonClass() {
+      const base = 'flex font-medium rounded shadow-xs items-center space-x-1';
+      return base.concat(' ', intentClass(this.intent), ' ', sizeClass(this.size))
+    }
+  }));
+</script>
