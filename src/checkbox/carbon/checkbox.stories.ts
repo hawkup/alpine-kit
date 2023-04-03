@@ -1,7 +1,7 @@
 import checkbox from './checkbox.html?raw'
 
 export default {
-  title: 'Checkbox/Carbon - Tailwind',
+  title: 'Components/Checkbox/Carbon - Tailwind',
 }
 
 export const Basic = () => checkbox

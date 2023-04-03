@@ -1,0 +1,14 @@
+<div
+  x-data="{
+    text: 'Hello World',
+    onClick() {
+      alert('Hello World');
+    }
+  }"
+>
+  <button
+    @click="onClick"
+    x-html="text"
+  >
+  </button>
+</div>
